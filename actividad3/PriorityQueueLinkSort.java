@@ -71,17 +71,21 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
 
     @Override
     public E back() throws ExceptionIsEmpty {
-        return null;
+        if (isEmpty()) 
+            throw new ExceptionIsEmpty("La cola está vacía");
+        return last.data.data;
     }
 
     @Override
     public E front() throws ExceptionIsEmpty {
-        return null;
+        if (isEmpty()) 
+            throw new ExceptionIsEmpty("La cola está vacía");
+        return first.data.data;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return first == null;
     }
 
     @Override

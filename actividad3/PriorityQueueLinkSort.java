@@ -90,6 +90,20 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
 
     @Override
     public String toString() {
-        return "";
+        if (isEmpty()) return "Cola vacía";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-10s | %s\n", "Dato", "Prioridad"));
+        sb.append("----------------------\n");
+
+        Node<EntryNode> actual = first;
+
+        while (actual != null) {
+            sb.append(String.format("%-10s | %s\n", actual.data.data.toString(),
+                    actual.data.priority.toString()));
+            actual = actual.next;
+        }
+
+        return sb.toString();
     }
 }

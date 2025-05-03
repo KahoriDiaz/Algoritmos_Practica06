@@ -1,3 +1,5 @@
+package ejercicio1;
+
 import actividad1.Stack;
 import actividad1.ExceptionIsEmpty;
 

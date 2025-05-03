@@ -48,6 +48,22 @@ public class QueueArray<E> implements Queue<E> {
 
     @Override
     public String toString() {
-        return "";
+        if (isEmpty()){
+            return "La cola está vacía";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cola: [");
+    
+        for (int i = 0; i < cantidad; i++) {
+            int index = (first + i) % data.length;
+            sb.append(data[index]);
+            if (i < cantidad - 1) {
+                sb.append(", ");
+            }
+        }
+    
+        sb.append("]");
+        return sb.toString();
     }
 }

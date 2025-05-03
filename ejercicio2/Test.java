@@ -8,8 +8,11 @@ public class Test {
         cola.enqueue("de");
         cola.enqueue("los");
         cola.enqueue("Angeles");
+        cola.enqueue("Cahuana");
 
         System.out.println("Elementos de la cola:");
         System.out.println(cola);
+
+        cola.enqueue("Pari");
     }
 }

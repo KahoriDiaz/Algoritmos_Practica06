@@ -1,10 +1,11 @@
 package ejercicio2;
 
 import actividad1.ExceptionIsEmpty;
+import actividad2.Queue;
 
 public class Test {
     public static void main(String[] args) {
-        QueueArray<String> colaString = new QueueArray<>(5);
+        Queue<String> colaString = new QueueArray<>(5);
 
         colaString.enqueue("Rosario");
         colaString.enqueue("de");
@@ -17,7 +18,9 @@ public class Test {
 
         //colaString.enqueue("Pari");
 
-        QueueArray<Integer> colaEnteros = new QueueArray<>(4);
+        System.out.println("");
+
+        Queue<Integer> colaEnteros = new QueueArray<>(4);
 
         colaEnteros.enqueue(10);
         colaEnteros.enqueue(20);
@@ -33,8 +36,32 @@ public class Test {
         } catch (ExceptionIsEmpty e) {
             System.out.println("Error: " + e.getMessage());
         }
-        
+
         System.out.println("Cola después de eliminar:");
         System.out.println(colaEnteros);
+
+        try {
+            System.out.println("Primer elemento -> front: " + colaEnteros.front());
+            System.out.println("Último elemento -> back: " + colaEnteros.back());
+        } catch (ExceptionIsEmpty e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        System.out.println("");
+
+        Queue<Character> colaLetras = new QueueArray<>(4);
+        colaLetras.enqueue('X');
+        colaLetras.enqueue('Y');
+        colaLetras.enqueue('Z');
+
+        System.out.println("Cola de caracteres:");
+        System.out.println(colaLetras);
+
+        try {
+            System.out.println("Primer elemento -> front: " + colaLetras.front());
+            System.out.println("Último elemento -> back: " + colaLetras.back());
+        } catch (ExceptionIsEmpty e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

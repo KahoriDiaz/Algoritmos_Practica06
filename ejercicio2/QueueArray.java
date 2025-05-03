@@ -44,13 +44,20 @@ public class QueueArray<E> implements Queue<E> {
     // Retorna el elemento al frente sin eliminarlo
     @Override
     public E front() throws ExceptionIsEmpty {
-        return null;
+        if (isEmpty()) {
+            throw new ExceptionIsEmpty("La cola está vacía. No hay elementos.");
+        }
+        return data[first];
     }
     
     // Retorna el último elemento agregado (final de la cola)
     @Override
     public E back() throws ExceptionIsEmpty {
-        return null;
+        if (isEmpty()) {
+            throw new ExceptionIsEmpty("La cola está vacía. No hay elementos.");
+        }
+        int posicionUltima = (last - 1 + data.length) % data.length;
+        return data[posicionUltima];
     }
 
     @Override

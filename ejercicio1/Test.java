@@ -1,5 +1,5 @@
-import Actividad1.Stack;
-import Actividad1.ExceptionIsEmpty;
+import actividad1.Stack;
+import actividad1.ExceptionIsEmpty;
 
 public class Test {
     public static void main(String[] args) {

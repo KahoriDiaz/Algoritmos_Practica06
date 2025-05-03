@@ -1,7 +1,7 @@
 package ejercicio1;
 
-import Actividad1.Stack;
-import Actividad1.ExceptionIsEmpty;
+import actividad1.ExceptionIsEmpty;
+import actividad1.Stack;
 
 public class StackLink<E> implements Stack<E> {
     //puntero al nodo que esta en el tope de la pila

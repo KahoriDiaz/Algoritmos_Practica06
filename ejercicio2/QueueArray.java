@@ -26,16 +26,28 @@ public class QueueArray<E> implements Queue<E> {
         last = (last + 1) % data.length;
         cantidad++;
     }
+    
+    // Elimina y retorna el elemento al frente de la cola
     @Override
     public E dequeue() throws ExceptionIsEmpty {
-        return null;
-    }
+        if (isEmpty()) {
+            throw new ExceptionIsEmpty("La cola está vacía. No se puede eliminar.");
+        }
 
+        E elemento = data[first];
+        data[first] = null;
+        first = (first + 1) % data.length;
+        cantidad--;
+        return elemento;
+    }
+    
+    // Retorna el elemento al frente sin eliminarlo
     @Override
     public E front() throws ExceptionIsEmpty {
         return null;
     }
-
+    
+    // Retorna el último elemento agregado (final de la cola)
     @Override
     public E back() throws ExceptionIsEmpty {
         return null;

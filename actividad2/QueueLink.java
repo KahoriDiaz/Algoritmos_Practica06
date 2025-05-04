@@ -71,5 +71,23 @@ public class QueueLink<E> implements Queue<E> {
         resultado += "]";                      // -> cierra la cadena con corchete
         return resultado;                      // -> retorna la cadena final
     }
+    //jani agrego este metodo
+    //metodo para enocntrar la posicion de un elemento dentro de una cola
+    public int indexOf(E elemento) {
+        Node<E> actual = first;  // apuntamos al inicio de la cola
+        int index = 0;//comenzamos desde la posicion 0
+        //mientras no lleguemos al final de la cola
+        while (actual != null) {
+            //si el dato del nodo actual es igual al elemento que buscamos
+            if (actual.getData().equals(elemento)) {
+                return index;  //retornamos su posición
+            }
+            //sino pasamos al siguiente nodo
+            actual = actual.getNext();
+            //incrementamos la posicion
+            index++;
+        }
+        return -1; // Si no encontramos el elemento, devolvemos -1
+    }
     
 }

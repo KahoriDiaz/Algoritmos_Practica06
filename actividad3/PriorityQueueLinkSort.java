@@ -61,13 +61,20 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
     // Elimina y retorna el elemento con mayor prioridad
     @Override
     public E dequeue() throws ExceptionIsEmpty {
+        // Verificamos si la cola está vacía
         if (isEmpty())
+            // Si está vacía, lanzamos la excepción personalizada
             throw new ExceptionIsEmpty("Cannot remove from an empty queue");
 
+        // Creamos una variable aux de tipo genérico que guarda el dato con mayor prioridad (el que está al inicio)
         E aux = this.first.getData().data;
+        // Actualizamos el puntero first para que ahora apunte al siguiente nodo de la lista
         this.first = this.first.getNext();
+        // Verificamos si después de eliminar el nodo, la lista quedó vacía
         if (this.first == null)
+            // Si quedó vacía, también actualizamos last a null para mantener la consistencia
             this.last = null;
+        // Retornamos el dato que fue eliminado
         return aux;
     }
     
@@ -92,39 +99,53 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
     public boolean isEmpty() {
         return first == null;
     }
+
+    // Método para buscar un elemento específico en la cola
     @Override
     public String buscarElemento(E elemento) {
-        Node<EntryNode> actual = first;
-        int posicion = 0;
+        
+        Node<EntryNode> actual = first; // Creamos un nodo auxiliar que apunta al primer nodo
+        int posicion = 0; // Variable que nos ayudará a llevar la posición actual del recorrido
 
+        // Recorremos la lista mientras no lleguemos al final
         while (actual != null) {
+            // Si encontramos un nodo cuyo dato coincide con el buscado
             if (actual.getData().data.equals(elemento)) {
+                // Retornamos el mensaje indicando su posición y su prioridad
                 return "\"" + elemento + "\" está en la posición " + posicion +
                     " y tiene prioridad " + actual.getData().priority + ".";
             }
+            // Pasamos al siguiente nodo
             actual = actual.getNext();
+            // Aumentamos la posición
             posicion++;
         }
-
+        // Si llegamos al final sin encontrarlo, retornamos mensaje indicándolo
         return "\"" + elemento + "\" no se encontró en la cola de prioridad.";
     }
 
     @Override
     public String toString() {
+        // Si la cola está vacía, lo indicamos
         if (isEmpty()) return "Cola vacía";
 
+        // Creamos un StringBuilder para construir el texto más eficientemente
         StringBuilder sb = new StringBuilder();
+        // Cabecera de la tabla
         sb.append(String.format("%-10s | %s\n", "Dato", "Prioridad"));
         sb.append("----------------------\n");
+        
+        Node<EntryNode> actual = first; // Creamos un nodo auxiliar que recorra desde el primer nodo
 
-        Node<EntryNode> actual = first;
-
+        // Mientras no lleguemos al final de la lista
         while (actual != null) {
+            // Agregamos el dato y su prioridad con formato de tabla
             sb.append(String.format("%-10s | %s\n", actual.data.data.toString(),
                     actual.data.priority.toString()));
+            // Pasamos al siguiente nodo
             actual = actual.next;
         }
-
+        // Retornamos el texto final con todos los elementos y sus prioridades
         return sb.toString();
     }
 }

@@ -1,19 +1,25 @@
 package actividad2;
 import actividad1.ExceptionIsEmpty;
 
-public class QueueLink<E> implements Queue<E> {
+public class QueueLink<E> implements Queue<E> { //Cola implementada con una lista Enlazada
+    
     private Node<E> first;  // -> inicio de la cola
     private Node<E> last;   // -> final de la cola
+    
     //constructor que inicia first y last apuntando a null xq esta vacia
     public QueueLink() {
         first = last = null;  // -> cola vacía
     }
+    
     //verifica si la cola esta vacia
+    @Override
     public boolean isEmpty() {
         //si first apunta a null
         return first == null;  // -> true si no hay elementos
     }
+    
     //insertar un elemento al FINAL de una cola
+    @Override
     public void enqueue(E x) {
         Node<E> aux = new Node<E>(x);  // -> Se crea un nuevo nodo llamado aux que contiene el dato x
         //verifica si la cola está vacía
@@ -25,7 +31,9 @@ public class QueueLink<E> implements Queue<E> {
             this.last = aux;         // -> se actualiza el puntero last para que ahora apunte al nuevo nodo - last = aux
         }
     }
+    
     //eliminar y devolver el primer elemento de la cola
+    @Override
     public E dequeue() throws ExceptionIsEmpty {
         //verifica si esta vacia
         if (this.isEmpty()) { //this representa la instancia actual de la clase donde estás trabajando
@@ -45,7 +53,9 @@ public class QueueLink<E> implements Queue<E> {
 
         return elemento;  //se devuelve el dato que estaba en el primer nodo (el que se elimino)
     }
+    
     //para ver que elemento esta al inicio de la cola sin eliminarlo
+    @Override
     public E front() throws ExceptionIsEmpty {
         //verifica si esta vacia
         if (this.isEmpty()) { //this representa la instancia actual de la clase donde se esta trabajando
@@ -54,7 +64,9 @@ public class QueueLink<E> implements Queue<E> {
         //Si la cola no está vacía, retorna el dato almacenado en el primer nodo - el que esta al frente de la cola)
         return first.getData(); 
     }
+    
     //para ver el ultimo elemento insertado en la cola sin eliminarlo
+    @Override
     public E back() throws ExceptionIsEmpty {
         //verifica si esta vacia
         if (this.isEmpty()) { //this representa la instancia actual de la clase donde se esta trabajando
@@ -64,6 +76,7 @@ public class QueueLink<E> implements Queue<E> {
         return last.getData();
     }
 
+    @Override
     public String toString() {
         if (isEmpty()) {
             return "Cola vacía";               // -> si no hay elementos
@@ -84,6 +97,7 @@ public class QueueLink<E> implements Queue<E> {
         resultado += "]";                      // -> cierra la cadena con corchete
         return resultado;                      // -> retorna la cadena final
     }
+    
     //jani agrego este metodo
     //metodo para enocntrar la posicion de un elemento dentro de una cola
     public int indexOf(E elemento) {
@@ -101,6 +115,5 @@ public class QueueLink<E> implements Queue<E> {
             index++;
         }
         return -1; // Si no encontramos el elemento, devolvemos -1
-    }
-    
+    }    
 }

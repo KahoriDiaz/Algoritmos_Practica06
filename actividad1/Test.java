@@ -4,17 +4,14 @@ public class Test {
     public static void main(String[] args) {
         // Creación de objetos de tipo Stack usando StackArray
 
-
         // Prueba con Stack de tipo Integer
-        StackArray<Integer> pilaInt = new StackArray<>(5);
-
+        Stack<Integer> pilaInt = new StackArray<>(5);
 
         // Operaciones sobre pila de Integer
         pilaInt.push(10);
         pilaInt.push(20);
         pilaInt.push(30);
         System.out.println("Pila de Integer: " + pilaInt);  // Debería mostrar [10, 20, 30]
-
 
         try {
             System.out.println("Tope de Integer: " + pilaInt.top());  // Debería mostrar 30
@@ -24,14 +21,12 @@ public class Test {
             System.out.println(e.getMessage());  // Manejo de excepción si la pila está vacía
         }
 
-
         // Test de la operación destroyStack
         pilaInt.destroyStack();
         System.out.println("Pila de Integer después de destroyStack(): " + pilaInt);  // Pila vacía
 
-
         // Prueba con Stack de tipo String
-        StackArray<String> pilaString = new StackArray<>(3);
+        Stack<String> pilaString = new StackArray<>(3);
        
         // Operaciones sobre pila de String
         pilaString.push("A");
@@ -55,8 +50,7 @@ public class Test {
 
 
         // Prueba con Stack de tipo Double
-        StackArray<Double> pilaDouble = new StackArray<>(2);
-
+        Stack<Double> pilaDouble = new StackArray<>(2);
 
         // Operaciones sobre pila de Double
         pilaDouble.push(3.14);
@@ -71,7 +65,6 @@ public class Test {
         } catch (ExceptionIsEmpty e) {
             System.out.println(e.getMessage());
         }
-
 
         // Test de pila llena
         pilaDouble.push(2.718);

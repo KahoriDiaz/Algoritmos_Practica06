@@ -4,51 +4,64 @@ import actividad1.ExceptionIsEmpty;
 public class QueueLink<E> implements Queue<E> {
     private Node<E> first;  // -> inicio de la cola
     private Node<E> last;   // -> final de la cola
-
+    //constructor que inicia first y last apuntando a null xq esta vacia
     public QueueLink() {
         first = last = null;  // -> cola vacía
     }
-
+    //verifica si la cola esta vacia
     public boolean isEmpty() {
+        //si first apunta a null
         return first == null;  // -> true si no hay elementos
     }
-
+    //insertar un elemento al FINAL de una cola
     public void enqueue(E x) {
-        Node<E> aux = new Node<E>(x);  // -> nuevo nodo con el dato
-        if (this.isEmpty()) {
-            first = last = aux;  // -> primer nodo si la cola está vacía
-        } else {
-            this.last.setNext(aux);  // -> enlaza nuevo nodo al final
-            this.last = aux;         // -> actualiza el último nodo
+        Node<E> aux = new Node<E>(x);  // -> Se crea un nuevo nodo llamado aux que contiene el dato x
+        //verifica si la cola está vacía
+        if (this.isEmpty()) { //this representa la instancia actual de la clase donde estás trabajando
+            //si esta vacia:
+            first = last = aux;  // -> El nuevo nodo aux es ahora el primero y el último nodo de la cola
+        } else { //si no esta vacia:
+            this.last.setNext(aux);  // -> se enlaza el nuevo nodo al final de la cola -  last → aux
+            this.last = aux;         // -> se actualiza el puntero last para que ahora apunte al nuevo nodo - last = aux
         }
     }
-
+    //eliminar y devolver el primer elemento de la cola
     public E dequeue() throws ExceptionIsEmpty {
-        if (this.isEmpty()) {
-            throw new ExceptionIsEmpty("Cola vacía");  // -> no se puede eliminar
+        //verifica si esta vacia
+        if (this.isEmpty()) { //this representa la instancia actual de la clase donde estás trabajando
+            //si esta vacia:
+            throw new ExceptionIsEmpty("Cola vacía");  // -> no se puede eliminar y lanzamos excepcion
         }
-        E elemento = first.getData();  // -> almacena el dato del primer nodo
-        first = first.getNext();       // -> avanza el inicio de la cola
+        //se guarda el dato del primer nodo (el que será eliminado) en la variable elemento
+        E elemento = first.getData();
+        //se actualiza el puntero first para que ahora apunte al siguiente nodo.
+        first = first.getNext();
 
+        //Si despues de eliminar el nodo ya no queda ningun nodo en la cola
         if (first == null) {
-            last = null;  // -> si ya no hay nodos, last también debe ser null
+            //entonces se actualiza last = null para mantener la consistencia de la cola vacía
+            last = null;
         }
 
-        return elemento;  // -> retorna el dato eliminado
+        return elemento;  //se devuelve el dato que estaba en el primer nodo (el que se elimino)
     }
-
+    //para ver que elemento esta al inicio de la cola sin eliminarlo
     public E front() throws ExceptionIsEmpty {
-        if (this.isEmpty()) {
-            throw new ExceptionIsEmpty("Cola vacía");
+        //verifica si esta vacia
+        if (this.isEmpty()) { //this representa la instancia actual de la clase donde se esta trabajando
+            throw new ExceptionIsEmpty("Cola vacía");  // ->  lanzamos excepcion
         }
-        return first.getData();  // -> retorna el valor al frente
+        //Si la cola no está vacía, retorna el dato almacenado en el primer nodo - el que esta al frente de la cola)
+        return first.getData(); 
     }
-
+    //para ver el ultimo elemento insertado en la cola sin eliminarlo
     public E back() throws ExceptionIsEmpty {
-        if (this.isEmpty()) {
-            throw new ExceptionIsEmpty("Cola vacía");
+        //verifica si esta vacia
+        if (this.isEmpty()) { //this representa la instancia actual de la clase donde se esta trabajando
+            throw new ExceptionIsEmpty("Cola vacía");  // ->  lanzamos excepcion
         }
-        return last.getData();  // -> retorna el valor del final
+        // si no esta vacia devuelve el contenido del ultimo nodo - el final de la cola
+        return last.getData();
     }
 
     public String toString() {

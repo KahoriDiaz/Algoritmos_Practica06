@@ -24,7 +24,7 @@ public class Aplication {
                 if (pila.isEmpty()) return false;
 
                 try {
-                    // Extraemos el último carácter apilado (el más reciente de apertura)
+                    // Eliminamos y devolvemos el último carácter apilado (el más reciente de apertura)
                     char top = pila.pop();
 
                     // Verificamos que coincida el tipo de corchete
@@ -42,7 +42,7 @@ public class Aplication {
             }
         }
 
-        /* Al final, si la pila está vacía, todo estuvo correctamente anidado
+        /* Al final, si la pila está vacía, todo estuvo correctamente anidado y sale
         Si no está vacía, quedó un corchete de apertura sin su cierre, entonce sería false */
         return pila.isEmpty();        
     }

@@ -3,7 +3,7 @@ package actividad3;
 import actividad1.ExceptionIsEmpty;
 
 public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements PriorityQueue<E, N> {
-
+    //clase interna
     class EntryNode {
         E data; // Dato
         N priority; // Prioridad asociada al dato
@@ -26,22 +26,20 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
 
     // Inserta un elemento según su prioridad
     @Override
-    public void enqueue(E x, N pr) {
+    public void enqueue(E x, N pr) { //dato x y prioridad pr
+        //objeto nuevo EntryNode 
         EntryNode entradaNueva = new EntryNode(x, pr);
+        //Nuevo nodo de tipo EntryNode que contiene como dato a entradaNueva
         Node<EntryNode> nodoNuevo = new Node<>(entradaNueva);
 
         // 1° Caso: Si la cola está vacía
         if (first == null) {
             first = last = nodoNuevo; // El nuevo nodo es el único, se vuelve first y last
-        }
-
-        // 2° Caso: Si se inserta al inicio
+        } // 2° Caso: Si se inserta al inicio
         else if (pr.compareTo(first.data.priority) < 0) { // Si el nuevo nodo tiene mayor prioridad que el primero
             nodoNuevo.next = first; // Entonces el nuevo nodo apunta al nodo que era el primero 
             first = nodoNuevo; // El nuevo nodo se convierte en el primero de la cola
-        }
-
-        // 3° Caso: Si se inserta al medio o al final
+        } // 3° Caso: Si se inserta al medio o al final
         else {
             Node<EntryNode> nodoCurrent = first; // Creamos una variable que apunta al mismo nodo que first
             Node<EntryNode> nodoPrevio = null;
@@ -93,6 +91,22 @@ public class PriorityQueueLinkSort<E, N extends Comparable<N>> implements Priori
     @Override
     public boolean isEmpty() {
         return first == null;
+    }
+    @Override
+    public String buscarElemento(E elemento) {
+        Node<EntryNode> actual = first;
+        int posicion = 0;
+
+        while (actual != null) {
+            if (actual.getData().data.equals(elemento)) {
+                return "\"" + elemento + "\" está en la posición " + posicion +
+                    " y tiene prioridad " + actual.getData().priority + ".";
+            }
+            actual = actual.getNext();
+            posicion++;
+        }
+
+        return "\"" + elemento + "\" no se encontró en la cola de prioridad.";
     }
 
     @Override

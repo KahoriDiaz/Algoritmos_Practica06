@@ -11,8 +11,6 @@ public class PriorityQueueLinked<E> implements PriorityQueue<E, Integer> {
     // numero de prioridades (tamaño del arreglo)
     private int numPriorities; 
 
-    //constructor
-    @SuppressWarnings("unchecked") //es para evitar un warning al crear el arreglo generico
     public PriorityQueueLinked(int numPriorities) {
         //inicializamos el numero de prioridades
         this.numPriorities = numPriorities;

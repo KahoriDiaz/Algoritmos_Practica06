@@ -19,6 +19,10 @@ public class QueueArray<E> implements Queue<E> {
     // Inserta un elemento al final de la cola
     @Override
     public void enqueue(E x) {
+        if(x == null){
+            throw new IllegalArgumentException("No se puede insertar un valor nulo.");
+        }
+
         if(cantidad == data.length){
             throw new IllegalStateException("La cola esta llena. No se puede insertar.");
         }
@@ -35,6 +39,11 @@ public class QueueArray<E> implements Queue<E> {
         }
 
         E elemento = data[first];
+
+        if (elemento == null){
+            throw new IllegalStateException("Elemento inconsistente en la cola.");
+        }
+
         data[first] = null;
         first = (first + 1) % data.length;
         cantidad--;
